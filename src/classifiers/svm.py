@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.optimize import fmin_l_bfgs_b
-from classifiers.utils import colm, rowm
+from utils import colm, rowm
 
 
 # Support Vector Machine classifier

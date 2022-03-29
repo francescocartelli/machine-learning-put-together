@@ -1,5 +1,5 @@
 import numpy as np
-from src.examples.datasets import load_iris_split
+from examples.iris.data_util import load_iris_split
 from src.classifiers.gaussian_c import Gaussian
 
 # Examples of training and test

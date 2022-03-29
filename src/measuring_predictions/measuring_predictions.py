@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def conf_matrix(pred_labels, act_labels):
@@ -10,8 +11,8 @@ def conf_matrix(pred_labels, act_labels):
 
 
 def dcf(cm, P, Cfp, Cfn):
-    FNR = cm[0,1] / (cm[0,1] + cm[1,1])
-    FPR = cm[1,0] / (cm[0,0] + cm[1,0])
+    FNR = cm[0, 1] / (cm[0, 1] + cm[1, 1])
+    FPR = cm[1, 0] / (cm[0, 0] + cm[1, 0])
 
     return P * Cfn * FNR + (1 - P) * Cfp * FPR
 
@@ -30,14 +31,10 @@ def min_dcf(S, labels, P, Cfp, Cfn):
     return minDCF
 
 
-def plot_bayes_error(S, labels, logPriors, dcfs=[], min_dcfs=[]):
+def bayes_errors_from_priors(S, labels, logPriors):
+    dcfs, min_dcfs = [], []
     for logPrior in logPriors:
         prior = 1 / (1 + np.exp(-logPrior))
         dcfs.append(norm_dcf(conf_matrix(S > 0, labels), prior, 1, 1))
         min_dcfs.append(min_dcf(S, labels, prior, 1, 1))
-
-    plt.plot(logPriors, dcfs, label='DCF', color='r')
-    plt.plot(logPriors, min_dcfs, label='minDCF', color='b')
-    plt.ylim([0, 1.1])
-    plt.xlim([min(logPriors), max(logPriors)])
-    plt.show()
+    return dcfs, min_dcfs

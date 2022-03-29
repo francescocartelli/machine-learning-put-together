@@ -1,4 +1,4 @@
-from src.examples.datasets import load_iris_binary_split
+from examples.iris.data_util import load_iris_binary_split
 from src.classifiers.svm import SVM, Poly, RBF
 
 # Examples of training and test

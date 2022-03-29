@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.special import logsumexp
-from classifiers.utils import colm, rowm, mu_sigma, logpdf_gau_nd
+from utils import colm, mu_sigma, logpdf_gau_nd
 
 
 # Marginal log-densities

@@ -7,26 +7,48 @@ src
 .
 │
 ├── classifiers
+|   ├── __init__.py
 │   ├── gaussian_c.py
 │   ├── gmm.py
 │   ├── logistic_reg.py
-|   ├── svm.py
-│   └── utils.py 
+│   └── svm.py
 │
 ├── examples
-|   ├── datasets.py
-│   ├── gaussian_c_example.py
-│   ├── logistic_reg_example.py
-│   └── svm_example.py
+|   ├── iris
+|   |   ├── data_util.py
+|   |   ├── gaussian_c_example.py
+|   |   ├── gmm_example.py
+|   |   ├── logistic_reg_example.py
+|   |   ├── preprocessing_example.py
+|   |   └── svm_example.py
+|   |
+|   └── pulsar
+|        ├── data
+|        |   ├── test.txt
+|        |   └── train.txt
+|        |
+|        └── measuring_example.py
 │
-├── measuring_predictions.py
+├── measuring_predictions
+|   ├── __init__.py
+│   └── measuring_predictions.py
 │
-└── preprocessing.py
+├── plotting
+|   ├── __init__.py
+│   └── plotting.py
+│
+├── preprocessing
+|   ├── __init__.py
+│   ├── gaussianization.py
+│   ├── lda.py
+│   └── pca.py
+│
+└── utils.py
 ```
 
 ## Prerequirements
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)<br><br>
-The following package are used in this project:
+The following packages are used in this project:
 - **Numpy**
 - **Scipy**
 
@@ -49,15 +71,19 @@ Invoke the classifier *"evaluate_something..."* method with the evaluation data 
 (in the the form of log-likelihood, log-likelihood-ratio or others) for the models.<br>
 Use the returned evaluation score to compute the prediction.
 
-## Models Evaluation
+## Measuring Predictions
 Measuring prediction of models and evaluating scores.
 
 ## Plotting
-Useful tools for plotting results and comparing models.
+Useful tools for plotting results and comparing models by using measuring_prediction module.
 
 ## Examples
-
-- **Gaussian classifiers example**: Straightforward application of Gaussian classifiers on dataset 1. 
-- **Logistic Regression example**: Straightforward application of logistic regression on dataset 1. 
-- **Support Vector Machine example**: Straightforward application of SVM on dataset 1. 
-- **Gaussian Mixture Model example**: Straightforward application of GMM on dataset 1. 
+### Iris
+All following examples are executed on iris dataset.
+- **Gaussian classifiers example**: Straightforward application of Gaussian classifiers. 
+- **Gaussian Mixture Model example**: Straightforward application of GMM classifier. 
+- **Logistic Regression example**: Straightforward application of logistic regression classifier.
+- **Preprocessing**: Plotting of iris dataset after application of LDA and PCA. 
+- **Support Vector Machine example**: Straightforward application of SVM classifier. 
+### Pulsar
+All following examples are executed on pulsar dataset.

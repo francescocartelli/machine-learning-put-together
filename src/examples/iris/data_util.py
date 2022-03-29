@@ -31,3 +31,7 @@ def load_iris_binary_split():
     L[L == 2] = 0
 
     return split_db_2to1(D, L)
+
+
+def load_iris():
+    return sklearn.datasets.load_iris()['data'].T, sklearn.datasets.load_iris()['target']

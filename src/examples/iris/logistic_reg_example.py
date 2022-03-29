@@ -1,5 +1,6 @@
-from src.examples.datasets import load_iris_binary_split
+from examples.iris.data_util import load_iris_binary_split
 from src.classifiers.logistic_reg import LogisticReg
+
 
 # Examples of training and test
 if __name__ == "__main__":
