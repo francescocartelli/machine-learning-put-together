@@ -11,3 +11,20 @@ def pca(A, n):
     P = U[:, ::-1][:, 0:n]
 
     return np.dot(P.T, A)
+
+
+class PCA:
+    def __init__(self, n):
+        self.n = n      # Number of components
+        self.P = None   # Principal components vector
+
+    def fit_transform(self, D):
+        mu, sigma = mu_sigma(D)
+        s, U = np.linalg.eigh(sigma)
+        self.P = U[:, ::-1][:, 0:self.n]
+
+        return np.dot(self.P.T, D)
+
+    # Apply principal component to new data
+    def transform(self, D):
+        return np.dot(self.P.T, D)

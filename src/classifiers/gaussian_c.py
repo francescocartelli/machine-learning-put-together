@@ -31,7 +31,7 @@ class Gaussian:
 
     # Given an evaluation set returns the log likelihood for all the sample and for all the classes
     def log_l(self, DTE):
-        return np.array([logpdf_gau_nd(DTE, self.mu[i, :, :], self.sigma[i, :, :]) for i in self.classes])
+        return np.array([logpdf_gau_nd(DTE, self.mu[i, :, :], self.sigma[i, :, :]) for i, c in enumerate(self.classes)])
 
     # Given a vector of log likelihood and a fixed prior returns the posterior probabilities
     def posterior_log_l(self, log_l, priors):

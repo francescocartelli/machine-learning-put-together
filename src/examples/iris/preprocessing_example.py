@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from examples.iris.data_util import load_iris
+from examples.iris.data_utils import load_iris
 from src.preprocessing import *
 
 if __name__ == "__main__":

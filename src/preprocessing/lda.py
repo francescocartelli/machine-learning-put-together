@@ -38,3 +38,23 @@ def lda(D, L, m):
     return np.dot(W.T, D)
 
 
+class LDA:
+    def __init__(self, m):
+        self.m = m      # Number of components
+        self.U = None   # Weights of lda
+
+    # Fit pca on input data and return transformed data
+    def fit_transform(self, D, L):
+        S_B, S_W = between_within_cov(D, L)
+        s, U = eigh(S_B, S_W)
+        W = U[:, ::-1][:, 0:self.m]
+
+        UW, _, _ = np.linalg.svd(W)
+        self.U = UW[:, 0:self.m]
+
+        return np.dot(self.U.T, D)
+
+    # Apply lda to new data
+    def transform(self, D):
+        return np.dot(self.U.T, D)
+

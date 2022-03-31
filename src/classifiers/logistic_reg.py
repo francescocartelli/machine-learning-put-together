@@ -4,12 +4,8 @@ from scipy.optimize import fmin_l_bfgs_b
 
 # Logistic Regression binary classifier
 class LogisticReg:
-    def __init__(self, D, L, classes=None):
+    def __init__(self, D, L):
         self.D, self.L = D, L               # Training data and labels
-        if classes is None:
-            self.classes = np.unique(L)     # Classes involved
-        else:
-            self.classes = classes
         self.w = None                       # Optimized weights vector, set in training
         self.b = None                       # Optimized biases vector, set in training
 
@@ -31,7 +27,7 @@ class LogisticReg:
         return (l * (w_ * w_).sum() / 2) + logY_0_m + logY_1_m
 
     # Train binary logistic regression with lambda as hyperparameter
-    def train_logistic_reg(self, l, prior=None):
+    def train(self, l=0.0, prior=None):
         x0 = np.zeros(self.D.shape[0] + 1)
 
         # Regularization requires prior not None

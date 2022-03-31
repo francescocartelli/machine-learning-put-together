@@ -5,7 +5,7 @@ from utils import colm, rowm
 
 # Support Vector Machine classifier
 class SVM:
-    def __init__(self, D, L, C=1, K=1, prior=None, kernel=None):
+    def __init__(self, D, L, C=1, K=1, kernel=None):
         self.D, self.L = D, L       # Training data and labels
         self.C, self.K = C, K       # C and K parameters
         self.Z = colm(L * 2 - 1)    # Labels column matrix where classes are -1 and 1
@@ -22,7 +22,7 @@ class SVM:
         self.H = G * self.Z * self.Z.T
 
     # Train SVM classifier, prior is passed in training
-    def train_svm(self, x0=None, prior=None, factr=1.0, maxfun=15000):
+    def train(self, x0=None, prior=None, factr=1.0, maxfun=15000):
         # Box constraints definition with regularization term
         if prior is None:
             bounds = [(0, self.C) for _ in range(self.D.shape[1])]

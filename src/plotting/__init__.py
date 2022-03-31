@@ -1,3 +1,3 @@
-from plotting.plotting import plot_multiple_dcf_mindcf
+from plotting.plotting import *
 
-__all__ = ["plot_multiple_dcf_mindcf"]
+__all__ = ["plot_multiple_bayes_error", "plot_multiple_mindcf_bar_chart", "plot_roc_curve"]

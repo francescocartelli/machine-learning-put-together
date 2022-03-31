@@ -108,7 +108,7 @@ class GMM:
         self.gmm = None                     # GMM components each one is a triplet (w, mu, sigma)
 
     # Train model
-    def train(self, n_components, alpha=0.1, psi=0.01, model="FCG"):
+    def train(self, n_components=4, alpha=0.1, psi=0.01, model="FCG"):
         self.gmm = []   # Empty the state in case of previous training existence
         if model not in ["FCG", "TCG", "NBG"]:
             raise Exception(f"Model {model} not recognised.")
