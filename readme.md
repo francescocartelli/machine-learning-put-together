@@ -1,9 +1,13 @@
 
-<h1 align="center">Machine Learning Put Together  </h1>
-<div align="center"><italic>Python implementations of few standard ML algorithms for classification, models evaluation and preprocessing.</italic></div>
+<div align="center">
+  <h1>Machine Learning Put Together</h1>
+  <div align="center"><p><i>Python implementations of few standard ML algorithms for classification, models evaluation and preprocessing.</i></p></div>
+  <div align="center">
+    <a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg"></a>
+  </div>
+</div>
 
-## Prerequirements  
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)<br><br>  
+## Prerequirements   
 The following packages are used in this project:  
 - **Matplotlib**  
 - **Numpy**  
