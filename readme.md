@@ -62,8 +62,8 @@ src
 ## Classifiers  
 - **Gaussian classifiers**:  
    - **Multivariate Gaussian classifier**  
- - **Naive Bayes Gaussian classifier**  
- - **Tied Covariance Gaussian classifier**  
+   - **Naive Bayes Gaussian classifier**  
+   - **Tied Covariance Gaussian classifier**  
 - **Logistic Regression**  
 - **Support Vector Machine**  
 - **Gaussian Mixture Model**  
