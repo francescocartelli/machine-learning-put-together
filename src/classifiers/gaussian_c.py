@@ -2,36 +2,40 @@ import numpy as np
 from scipy.special import logsumexp
 from utils import colm, mu_sigma, logpdf_gau_nd
 
+from graphs import Classifier
+
 
 # Gaussian classifiers
-class Gaussian:
-    def __init__(self, D, L, classes=None):
-        self.D, self.L = D, L                                                       # Training data and labels
-        if classes is None:
-            self.classes = np.unique(L)                                             # Classes involved
-        else:
-            self.classes = classes
-        self.n_classes = len(self.classes)                                          # Number of classes
-        self.mu = np.zeros([self.n_classes, self.D.shape[0], 1])                    # Vector of means matrices
-        self.sigma = np.zeros([self.n_classes, self.D.shape[0], self.D.shape[0]])   # Vector of covariance matrices
-
-    # Train model
-    def train(self, model="MVG"):
+class Gaussian(Classifier):
+    def __init__(self, model="MVG"):
         if model not in ["MVG", "TCG", "NBG"]:
             raise Exception(f"Model {model} not recognised.")
+        self.model = model
+
+        self.classes = None
+        self.n_classes = None       # Number of classes
+        self.mu = None              # Vector of means matrices
+        self.sigma = None           # Vector of covariance matrices
+
+    # Train model
+    def train(self, x, y, classes=None):
+        self.classes = np.unique(y) if classes is None else classes
+        self.n_classes = len(self.classes)
+        self.mu = np.zeros([self.n_classes, x.shape[0], 1])
+        self.sigma = np.zeros([self.n_classes, x.shape[0], x.shape[0]])
 
         freq_c = np.zeros([self.n_classes, 1, 1])   # Frequency of each class
         for i, c in enumerate(self.classes):
-            self.mu[i, :, :], sigma_i = mu_sigma(self.D[:, self.L == c])
-            self.sigma[i, :, :] = np.diag(np.diag(sigma_i)) if model == "NBG" else sigma_i
-            freq_c[i, :, :] = self.D[:, self.L == c].shape[1] / self.D.shape[1]  # Used only for TCG
+            self.mu[i, :, :], sigma_i = mu_sigma(x[:, y == c])
+            self.sigma[i, :, :] = np.diag(np.diag(sigma_i)) if self.model == "NBG" else sigma_i
+            freq_c[i, :, :] = x[:, y == c].shape[1] / x.shape[1]  # Used only for TCG
 
-        if model == "TCG":
-            self.sigma = np.zeros([self.n_classes, self.D.shape[0], self.D.shape[0]]) + (self.sigma * freq_c).sum(axis=0)
+        if self.model == "TCG":
+            self.sigma = np.zeros([self.n_classes, x.shape[0], x.shape[0]]) + (self.sigma * freq_c).sum(axis=0)
 
     # Given an evaluation set returns the log likelihood for all the sample and for all the classes
-    def log_l(self, DTE):
-        return np.array([logpdf_gau_nd(DTE, self.mu[i, :, :], self.sigma[i, :, :]) for i, c in enumerate(self.classes)])
+    def log_l(self, x):
+        return np.array([logpdf_gau_nd(x, self.mu[i, :, :], self.sigma[i, :, :]) for i, c in enumerate(self.classes)])
 
     # Given a vector of log likelihood and a fixed prior returns the posterior probabilities
     def posterior_log_l(self, log_l, priors):
@@ -39,6 +43,8 @@ class Gaussian:
         return joint_p - logsumexp(joint_p, axis=0)
 
     # Given an evaluation set returns the log likelihood and posterior probability if priors is not none
-    def evaluate(self, DTE, priors):
-        log_l = self.log_l(DTE)
-        return log_l, self.posterior_log_l(log_l, priors)
+    def transform(self, x):
+        return self.log_l(x)
+
+    def __str__(self):
+        return f"Gaussian({self.model})"
