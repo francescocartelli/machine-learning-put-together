@@ -2,6 +2,8 @@ import numpy as np
 from scipy.special import logsumexp
 from utils import colm, mu_sigma, logpdf_gau_nd
 
+from graphs import *
+
 
 # Marginal log-densities
 def logpdf_gmm(X, gmm):
@@ -97,29 +99,31 @@ def gmm_lbg(X, G, threshold=10**-6, alpha=0.1, psi=0.01, model="FCG"):
     return gmm, post_p, margin_d
 
 
-class GMM:
-    def __init__(self, D, L, classes=None):
-        self.D, self.L = D, L               # Training data and labels
-        if classes is None:
-            self.classes = np.unique(L)     # Classes involved
-        else:
-            self.classes = classes
-        self.n_classes = len(self.classes)  # Number of classes
+class GMM(Classifier):
+    def __init__(self, n=4, alpha=0.1, psi=0.01, model="FCG"):
         self.gmm = None                     # GMM components each one is a triplet (w, mu, sigma)
+        self.n = n
+        self.alpha = alpha
+        self.psi = psi
+        self.classes = None
+        self.n_classes = None
+        self.model = model
+        if self.model not in ["FCG", "TCG", "NBG"]:
+            raise Exception(f"Model {self.model} not recognised.")
 
     # Train model
-    def train(self, n_components=4, alpha=0.1, psi=0.01, model="FCG"):
-        self.gmm = []   # Empty the state in case of previous training existence
-        if model not in ["FCG", "TCG", "NBG"]:
-            raise Exception(f"Model {model} not recognised.")
+    def train(self, x, y):
+        self.classes = np.unique(y)
+        self.n_classes = len(self.classes)
 
+        self.gmm = []   # Empty the state in case of previous training existence
         for c in self.classes:
-            gmm_c, _, _ = gmm_lbg(self.D[:, self.L == c], n_components, alpha=alpha, psi=psi, model=model)
+            gmm_c, _, _ = gmm_lbg(x[:, y == c], self.n, alpha=self.alpha, psi=self.psi, model=self.model)
             self.gmm.append(gmm_c)
 
     # Given an evaluation set returns the log likelihood for all the sample and for all the classes
-    def log_l(self, DTE):
-        log_l = np.array([logpdf_gmm(DTE, self.gmm[g]) for g in range(len(self.gmm))])
+    def transform(self, x):
+        log_l = np.array([logpdf_gmm(x, self.gmm[g]) for g in range(len(self.gmm))])
         return log_l
 
     # Given a vector of log likelihood and a fixed prior returns the posterior probabilities
