@@ -29,7 +29,7 @@ if __name__ == "__main__":
     print("==============================")
 
     lda_2 = LDA(2)
-    DTR_LDA_2 = lda_2.fit_transform(DTR, LTR)
+    DTR_LDA_2 = lda_2.train_transform(DTR, LTR)
     DTE_LDA_2 = lda_2.transform(DTE)
 
     for l in [0, 10**(-6), 10**(-3), 1.0]:

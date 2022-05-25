@@ -1,6 +1,8 @@
 import numpy as np
 from utils import mu_sigma
 
+from graphs import *
+
 
 def pca(A, n):
     # Average vector of the rows
@@ -13,18 +15,18 @@ def pca(A, n):
     return np.dot(P.T, A)
 
 
-class PCA:
+class PCA(Node):
     def __init__(self, n):
         self.n = n      # Number of components
         self.P = None   # Principal components vector
 
-    def fit_transform(self, D):
-        mu, sigma = mu_sigma(D)
+    def fit(self, x):
+        mu, sigma = mu_sigma(x)
         s, U = np.linalg.eigh(sigma)
         self.P = U[:, ::-1][:, 0:self.n]
 
-        return np.dot(self.P.T, D)
+    def transform(self, x):
+        return np.dot(self.P.T, x)
 
-    # Apply principal component to new data
-    def transform(self, D):
-        return np.dot(self.P.T, D)
+    def __str__(self):
+        return f"PCA({self.n})"

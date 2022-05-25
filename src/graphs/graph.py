@@ -10,13 +10,18 @@ class Node(Transformation):
     def fit(self, x):
         pass
 
-    def fit_transform(self, x, y):
-        pass
+    def fit_transform(self, x):
+        self.fit(x)
+        return self.transform(x)
 
 
 class Classifier(Node):
     def train(self, x, y):
         pass
+
+    def train_transform(self, x, y):
+        self.train(x, y)
+        return self.transform(x)
 
 
 class GraphNode:

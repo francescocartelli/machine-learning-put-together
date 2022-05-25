@@ -2,6 +2,8 @@ import numpy as np
 from scipy.linalg import eigh
 from utils import colm
 
+from graphs import *
+
 
 def between_within_cov(D, L):
     classes = np.unique(L)
@@ -38,23 +40,23 @@ def lda(D, L, m):
     return np.dot(W.T, D)
 
 
-class LDA:
+class LDA(Classifier):
     def __init__(self, m):
         self.m = m      # Number of components
         self.U = None   # Weights of lda
 
-    # Fit pca on input data and return transformed data
-    def fit_transform(self, D, L):
-        S_B, S_W = between_within_cov(D, L)
+    def train(self, x, y):
+        S_B, S_W = between_within_cov(x, y)
         s, U = eigh(S_B, S_W)
         W = U[:, ::-1][:, 0:self.m]
 
         UW, _, _ = np.linalg.svd(W)
         self.U = UW[:, 0:self.m]
 
-        return np.dot(self.U.T, D)
-
     # Apply lda to new data
-    def transform(self, D):
-        return np.dot(self.U.T, D)
+    def transform(self, x):
+        return np.dot(self.U.T, x)
+
+    def __str__(self):
+        return f"LDA(m:{self.m})"
 

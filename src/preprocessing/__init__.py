@@ -1,5 +1,6 @@
-from preprocessing.gaussianization import gaussianization
+from preprocessing.gaussianization import Gaussianization, gaussianization
 from preprocessing.lda import LDA, lda
 from preprocessing.pca import PCA, pca
+from preprocessing.standard import Standardization
 
-__all__ = ["gaussianization", "LDA", "lda", "PCA", "pca"]
+__all__ = ["Gaussianization", "gaussianization", "LDA", "lda", "PCA", "pca", "Standardization"]
