@@ -36,6 +36,14 @@ def norm_dcf(cm, P, Cfp, Cfn):
     return DCF / min(P * Cfn, (1 - P) * Cfp)
 
 
+# Given a confusion matrix and a prior tercet return the normalized dcf
+def norm_dcf_threshold(score, labels, P, Cfp, Cfn):
+    t = -np.log(P/(1-P))
+    DCF = dcf(conf_matrix(score > t, labels), P, Cfp, Cfn)
+
+    return DCF / min(P * Cfn, (1 - P) * Cfp)
+
+
 # Find the min-dcf given a score vector, actual labels and prior tercet
 def min_dcf(S, labels, P, Cfp, Cfn):
     minDCF = np.inf

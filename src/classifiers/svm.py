@@ -11,7 +11,7 @@ class SVM(Classifier):
         self.C, self.K = C, K       # C and K parameters
         self.Z = None
         self.x_K = None
-        self.kernel = kernel        # Kernel function of two numeric variable
+        self.kernel = kernel        # Kernel object with function f of two numeric variables
         self.alpha = None           # Alpha vector, set in training
         self.W = None               # Weight matrix, set in training, if SVM has linear kernel
         self.H = None
@@ -29,7 +29,7 @@ class SVM(Classifier):
             self.x_K = np.concatenate((x, rowm(np.zeros(x.shape[1])) + self.K), axis=0)  # Train data plus K row
             G = np.dot(self.x_K.T, self.x_K)    # G is dot product between data+K and its transposed
         else:
-            G = [[self.kernel(x.T[i], x.T[j]) for j in range(self.Z.shape[0])] for i in range(self.Z.shape[0])]
+            G = [[self.kernel.f(x.T[i], x.T[j]) for j in range(self.Z.shape[0])] for i in range(self.Z.shape[0])]
         self.H = G * self.Z * self.Z.T
 
         # Box constraints definition with regularization term
@@ -62,7 +62,7 @@ class SVM(Classifier):
             return np.dot(self.W.T, DTE_k)
         else:
             # Matrix of values as kernel function (D[i], DTE[j])
-            kernel_DTE = np.array([np.array([self.kernel(self.x_.T[j], x.T[i])
+            kernel_DTE = np.array([np.array([self.kernel.f(self.x_.T[j], x.T[i])
                                               for j in range(self.x_.shape[1])])
                                    for i in range(x.shape[1])])
             return (colm(self.alpha) * self.Z * kernel_DTE.T).sum(axis=0)
@@ -80,7 +80,7 @@ class Poly:
         return (np.dot(x1.T, x2) + self.c) ** self.d
 
     def __str__(self):
-        return f"Poly (c:{self.c} d:{self.d})"
+        return f"Poly (c:{self.c}, d:{self.d})"
 
 
 # Encapsulation of radial basis kernel function with lambda and bias terms
@@ -92,4 +92,4 @@ class RBF:
         return np.exp(-self.l * np.linalg.norm(x1 - x2)**2) + self.k
 
     def __str__(self):
-        return f"Poly (c:{self.l} d:{self.k})"
+        return f"Poly (c:{self.l}, d:{self.k})"

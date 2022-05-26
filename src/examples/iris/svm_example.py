@@ -1,5 +1,5 @@
 from examples.iris.data_utils import load_iris_binary_split
-from src.classifiers.svm import SVM, Poly, RBF
+from src.classifiers import *
 
 # Examples of training and test
 if __name__ == "__main__":
@@ -10,7 +10,7 @@ if __name__ == "__main__":
             S = SVM(K=K, C=C)
             S.train(DTR, LTR)
             score = S.transform(DTE)
-            print(f"{str(SVM)} error rate:", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")
+            print(SVM, "error rate:", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")
             print(SVM)
         print("==============================")
 
@@ -18,27 +18,27 @@ if __name__ == "__main__":
     for K in [0, 1.0]:
         poly = Poly(0, 2)
         for prior in [0.1, 0.5, 0.9]:
-            S = SVM(K=K, C=1, kernel=poly.f, prior=prior)
+            S = SVM(K=K, C=1, kernel=poly, prior=prior)
             S.train(DTR, LTR)
             score = S.transform(DTE)
-            print(f"SVM (K:{K}, C:1, P:{prior}) error rate Poly(0, 2):", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")
+            print(SVM, "error rate Poly(0, 2):", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")
     for K in [0, 1.0]:
         poly = Poly(1, 2)
-        S = SVM(K=K, C=1, kernel=poly.f)
+        S = SVM(K=K, C=1, kernel=poly)
         S.train(DTR, LTR)
         score = S.transform(DTE)
-        print(f"SVM (K:{K}, C:1) error rate Poly(1, 2):", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")
+        print(SVM, "error rate Poly(1, 2):", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")
 
     print("\nRBF Kernels:")
     for K in [0, 1.0]:
         rbf = RBF(1, K**2)
-        S = SVM(K=K, C=1, kernel=rbf.f)
+        S = SVM(K=K, C=1, kernel=rbf)
         S.train(DTR, LTR)
         score = S.transform(DTE)
-        print(f"SVM (K:{K}, C:1) error rate RBF(1):", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")
+        print(SVM, "error rate RBF(1):", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")
     for K in [0, 1.0]:
         rbf = RBF(10, K**2)
-        S = SVM(K=K, C=1, kernel=rbf.f)
+        S = SVM(K=K, C=1, kernel=rbf)
         S.train(DTR, LTR)
         score = S.transform(DTE)
-        print(f"SVM (K:{K}, C:1) error rate RBF(10):", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")
+        print(SVM, "(K:{K}, C:1) error rate RBF(10):", str(((score > 0) != LTE).sum() / LTE.size * 100) + "%")

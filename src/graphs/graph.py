@@ -39,6 +39,9 @@ class GraphNode:
     def o(self):
         return self.results
 
+    def __str__(self):
+        return self.steps
+
 
 class InputNode:
     def __init__(self):
