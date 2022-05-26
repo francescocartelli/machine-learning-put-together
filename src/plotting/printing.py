@@ -37,3 +37,7 @@ class StandardPrinter(Printer):
                 print(node, "minDCF", min_dcfs)
                 if self.actual:
                     print(node, "actDCF", act_dcfs)
+
+    def __str__(self):
+        return f"Output"
+
