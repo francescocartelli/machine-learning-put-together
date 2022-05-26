@@ -45,9 +45,9 @@ if __name__ == "__main__":
     g = Graph()
     gau = g.add(Gaussian, model="MVG", inputs=[g.get_x, g.get_y])
     std = g.add(Standardization, inputs=g.get_x)
-    log = g.add(LogisticReg, inputs=[std.o, g.get_y])
-    svm = g.add(SVM, C=0.1, kernel=RBF(1.0, 1.0), inputs=[std.o, g.get_y])
-    prt = g.add(StandardPrinter, accuracy=False, priors=[0.5, 0.1, 0.9], actual=True, inputs=[gau, log, svm])
+    log = g.add(LogisticReg, inputs=[std, g.get_y])
+    svm = g.add(SVM, C=0.1, inputs=[std, g.get_y])
+    prt = g.add(StandardPrinter, accuracy=True, priors=[0.5, 0.1, 0.9], actual=True, inputs=[gau, log, svm])
 
     g.fit(DTR, LTR)
     g.transform(DTE)
