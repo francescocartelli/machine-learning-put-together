@@ -38,4 +38,3 @@ def plot_roc_curve(S, labels, size=1000):
     plt.plot(roc_matrix[:, 0], roc_matrix[:, 1])
     plt.show()
 
-

@@ -1,5 +1,10 @@
+class Printer:
+    def __call__(self, *args, **kwargs):
+        pass
+
+
 class Transformation:
-    def transform(self, x):
+    def transform(self, *x):
         pass
 
     def __str__(self):
@@ -45,8 +50,10 @@ class Graph:
         self.schedule = []
         self.x, self.y = None, None
 
-    def add_node(self, node_class, *args, inputs=None):
-        graph_node = GraphNode(node_class(*args), inputs)
+    def add(self, node_class, **kwargs):
+        inputs = kwargs["inputs"]
+        del kwargs["inputs"]
+        graph_node = GraphNode(node_class(**kwargs), inputs)
         self.schedule.append(graph_node)
 
         return graph_node
@@ -58,11 +65,25 @@ class Graph:
                 inp = [g() for g in n.inputs]
                 n.node.train(inp[0], inp[1])
                 n.results = n.node.transform(inp[0])
-            elif isinstance(n.node, Transformation) or isinstance(n.node, Node):
+            elif isinstance(n.node, Node):
+                n.results = n.node.fit_transform(n.inputs())
+            elif isinstance(n.node, Transformation):
                 n.results = n.node.transform(n.inputs())
 
     def transform(self, x):
-        pass
+        self.x = x
+        for n in self.schedule:
+            if isinstance(n.node, Classifier):
+                n.results = n.node.transform([g() for g in n.inputs][0])
+            elif isinstance(n.node, Transformation) or isinstance(n.node, Node):
+                n.results = n.node.transform(n.inputs())
+
+    def output(self, y):
+        for n in self.schedule:
+            if isinstance(n.node, Printer):
+                scores = [i.o() for i in n.inputs]
+                nodes = [i.node.__str__() for i in n.inputs]
+                n.node(nodes=nodes, scores=scores, labels=y)
 
     def get_x(self):
         return self.x

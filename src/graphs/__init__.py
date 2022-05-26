@@ -1,3 +1,3 @@
-from graphs.graph import Graph, Transformation, Node, Classifier
+from graphs.graph import *
 
-__all__ = ["Graph", "Transformation", "Node", "Classifier"]
+__all__ = ["Graph", "Transformation", "Node", "Classifier", "Printer"]
