@@ -9,7 +9,8 @@
 
 ## Prerequirements   
 The following packages are used in this project:  
-- **Matplotlib**  
+- **Matplotlib**
+- **Networkx**  
 - **Numpy**  
 - **Scipy**  
 - **Sklearn**  
