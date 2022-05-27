@@ -46,4 +46,4 @@ class LogisticReg(Classifier):
         return np.dot(self.w.T, x) + self.b
 
     def __str__(self):
-        return f"LogReg(l:{self.l}, prior:{self.prior})"
+        return f"LoR(l:{self.l}, prior:{self.prior})"

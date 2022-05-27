@@ -1,4 +1,4 @@
-from examples.iris.data_utils import load_iris_split
+from examples.iris.iris_data_utils import load_iris_split
 from src.classifiers.gmm import GMM
 
 import numpy as np

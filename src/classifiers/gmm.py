@@ -130,3 +130,6 @@ class GMM(Classifier):
     def posterior_log_l(self, log_l, priors):
         joint_p = log_l + np.log(priors)
         return joint_p - logsumexp(joint_p, axis=0)
+
+    def __str__(self):
+        return f"GMM(n: {self.n} alpha:{self.alpha} psi:{self.psi}"

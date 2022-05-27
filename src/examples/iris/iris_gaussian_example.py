@@ -1,5 +1,5 @@
 import numpy as np
-from examples.iris.data_utils import load_iris, load_iris_split
+from examples.iris.iris_data_utils import load_iris, load_iris_split
 from src.classifiers.gaussian_c import Gaussian
 from utils import KFoldCrossVal
 

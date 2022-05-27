@@ -28,12 +28,13 @@ src
 │  
 ├── examples  
 |   ├── iris  
-|   |   ├── data_util.py  
-|   |   ├── gaussian_c_example.py  
-|   |   ├── gmm_example.py  
-|   |   ├── logistic_reg_example.py  
-|   |   ├── preprocessing_example.py  
-|   |   └── svm_example.py  
+|   |   ├── iris_data_util.py  
+|   |   ├── iris_gaussian_c_example.py  
+|   |   ├── iris_gmm_example.py  
+|   |   ├── iris_graphs_example.py  
+|   |   ├── iris_logistic_reg_example.py  
+|   |   ├── iris_preprocessing_example.py  
+|   |   └── iris_svm_example.py  
 |   |  
 |   └── pulsar  
 |        ├── data  
@@ -41,24 +42,37 @@ src
 |        |  
 |        └── measuring_example.py  
 │  
+├── graphs  
+|   ├── __init__.py  
+│   └── graphs.py
+│ 
 ├── measuring_predictions  
 |   ├── __init__.py  
 │   └── measuring_predictions.py  
 │  
 ├── plotting  
 |   ├── __init__.py  
+│   ├── printing.py  
 │   └── plotting.py  
 │  
 ├── preprocessing  
 |   ├── __init__.py  
 │   ├── gaussianization.py  
 │   ├── lda.py  
-│   └── pca.py  
+│   ├── pca.py  
+│   └── standard.py
 │  
 └── utils.py  
 ```  
-  
-  
+
+## Graphs    
+Useful tools to automate training and evalutation on multiple classifiers, preprocessing techinques and results elaboration.<br>
+Graphs allow to display the internal structure of their nodes with *display* method.<br>
+See **./src/examples/iris/iris_graphs_examples.py** for an example, the image below represent the internal structure of 
+the graph directly from the example *display* invocation.
+
+![iris graph example](./graph_strucure.png)
+
 ## Classifiers  
 - **Gaussian classifiers**:  
    - **Multivariate Gaussian classifier**  
@@ -70,19 +84,19 @@ src
   
 ### How to use them?  
 Each classifier is represented by a class.<br>  
-The initialization of each classifier requires at least training data and labels.  
+The initialization of each classifier requires hyperparameters injection.  
 Training data is in the form of a numpy matrix NxM (each row is an attribute, each column is a training sample).  
 Labels are in the form of a numpy vector.<br>  
-Invoke the classifier *"training_something..."* method for training the model and setting the learning parameters.<br>  
-Invoke the classifier *"evaluate_something..."* method with the evaluation data set as parameter to compute the evaluation score   
+Invoke the classifier *"train"* method for training the model and setting the learning parameters.<br>  
+Invoke the classifier *"transform"* method with the evaluation data set as parameter to compute the evaluation score   
 (in the the form of log-likelihood, log-likelihood-ratio or others) for the models.<br>  
 Use the returned evaluation score to compute the prediction.  
   
 ## Measuring Predictions  
-Measuring prediction of models and evaluating scores.  
+Measuring prediction of models and evaluating scores for different problems applications.  
   
 ## Plotting  
-Useful tools for plotting results and comparing models by using measuring_predictions module.  
+Useful tools for plotting and printing results and comparing models by using measuring_predictions module.  
   
 ## Examples  
 Based on dataset.  

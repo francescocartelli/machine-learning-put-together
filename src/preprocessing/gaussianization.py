@@ -20,7 +20,7 @@ class Gaussianization(Node):
         self.train = x
 
     def transform(self, x):
-        return gaussianization(np.stack([self.train, x], axis=1))[self.train.shape[1]:, :]
+        return gaussianization(np.concatenate((self.train, x), axis=1))[:, self.train.shape[1]:]
 
     def __str__(self):
         return f"Gau"

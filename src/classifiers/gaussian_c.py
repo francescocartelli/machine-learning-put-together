@@ -47,4 +47,4 @@ class Gaussian(Classifier):
         return self.log_l(x)
 
     def __str__(self):
-        return f"Gaussian({self.model})"
+        return f"{self.model}"

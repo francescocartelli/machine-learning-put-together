@@ -1,4 +1,4 @@
-from examples.iris.data_utils import load_iris_binary_split
+from examples.iris.iris_data_utils import load_iris_binary_split
 from src.classifiers.logistic_reg import LogisticReg
 from preprocessing import *
 from plotting import *
