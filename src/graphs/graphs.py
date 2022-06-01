@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
+
 class Printer:
     def __call__(self, *args, **kwargs):
         pass
@@ -33,14 +34,14 @@ class Classifier(Node):
 
 
 class GraphNode:
-    def __init__(self, node, node_id=0, inputs=None):
+    def __init__(self, node, node_id=0, inputs=None, label=None):
         self.node = node
         self.results = None
         self.inputs = inputs
 
         self.node_id = node_id
         self.level = self.__level()
-        self.steps = ""
+        self.label = label
 
     def __level(self):
         levels = [i.level for i in self.inputs]
@@ -50,7 +51,7 @@ class GraphNode:
         return self.results
 
     def __str__(self):
-        return str(self.node)
+        return str(self.node) if self.label is None else self.label
 
 
 class InputNode:
@@ -74,7 +75,8 @@ class Graph:
 
     def add(self, node_class, **kwargs):
         inputs = kwargs.pop("inputs")
-        graph_node = GraphNode(node_class(**kwargs), len(self.schedule) + 1, inputs=inputs)
+        label = kwargs.pop("label", None)
+        graph_node = GraphNode(node_class(**kwargs), len(self.schedule) + 1, inputs=inputs, label=label)
 
         self.schedule.append(graph_node)
         try:
@@ -89,27 +91,25 @@ class Graph:
         self.y.results = y
         for n in self.schedule:
             if isinstance(n.node, Classifier):
-                inp = [g() for g in n.inputs]
-                n.node.train(inp[0], inp[1])
-                n.results = n.node.transform(inp[0])
+                n.results = n.node.train_transform(*(i() for i in n.inputs))
             elif isinstance(n.node, Node):
                 n.results = n.node.fit_transform(n.inputs[0]())
             elif isinstance(n.node, Transformation):
-                n.results = n.node.transform(n.inputs[0]())
+                n.results = n.node.transform(*(i() for i in n.inputs))
 
     def transform(self, x):
         self.x.results = x
         for n in self.schedule:
             if isinstance(n.node, Classifier):
                 n.results = n.node.transform([g() for g in n.inputs][0])
-            elif isinstance(n.node, Transformation) or isinstance(n.node, Node):
+            elif isinstance(n.node, Transformation):
                 n.results = n.node.transform(n.inputs[0]())
 
     def output(self, y):
         for n in self.schedule:
             if isinstance(n.node, Printer):
                 scores = [i() for i in n.inputs]
-                nodes = [i.node.__str__() for i in n.inputs]
+                nodes = [i.__str__() for i in n.inputs]
                 n.node(nodes=nodes, scores=scores, labels=y)
 
     def display(self):
@@ -152,8 +152,5 @@ class Graph:
         }
         nx.draw(g, nx.get_node_attributes(g, 'pos'), **options)
         plt.show()
-
-    def __call__(self, i=None):
-        return self.schedule[0], i if i is not None else 0
 
 

@@ -58,7 +58,8 @@ def bayes_errors_from_priors(S, labels, logPriors):
     dcfs, min_dcfs = [], []
     for logPrior in logPriors:
         prior = 1 / (1 + np.exp(-logPrior))
-        dcfs.append(norm_dcf(conf_matrix(S > 0, labels), prior, 1, 1))
+        t = -np.log(prior / (1 - prior))
+        dcfs.append(norm_dcf(conf_matrix(S > t, labels), prior, 1, 1))
         min_dcfs.append(min_dcf(S, labels, prior, 1, 1))
     return dcfs, min_dcfs
 

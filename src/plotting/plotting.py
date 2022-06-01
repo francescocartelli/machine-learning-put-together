@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 from measuring_predictions import *
+from graphs import Printer
 
 
 def plot_multiple_bayes_error(S_list, labels, logPriors, legend=None):
@@ -37,4 +38,16 @@ def plot_roc_curve(S, labels, size=1000):
     roc_matrix = roc_curve_vector(S, labels, size)
     plt.plot(roc_matrix[:, 0], roc_matrix[:, 1])
     plt.show()
+
+
+class BayesErrorPlotter(Printer):
+    def __init__(self, logPriors):
+        self.logPriors = logPriors
+
+    def __call__(self, *args, **kwargs):
+        nodes = kwargs.pop("nodes")
+        scores = kwargs.pop("scores")
+        labels = kwargs.pop("labels")
+
+        plot_multiple_bayes_error(scores, labels, self.logPriors, legend=nodes)
 
