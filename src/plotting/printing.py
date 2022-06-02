@@ -72,7 +72,8 @@ class StandardPrinter(Printer):
                     if writer is not None:
                         writer.writerow([node, "actDCF", *act_dcfs])
 
-        fileDCF.close()
+        if fileDCF is not None:
+            fileDCF.close()
 
     def __str__(self):
         return f"Output"
