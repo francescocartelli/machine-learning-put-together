@@ -90,11 +90,12 @@ class Graph:
 
     def add_multiple(self, node_class, grid, **kwargs):
         inputs = kwargs.pop("inputs")
-        label = kwargs.pop("label", None)
+        labels = kwargs.pop("labels", None)
 
         graph_nodes = []
         for config in grid.configs:
-            graph_node = GraphNode(node_class(**config), len(self.schedule) + 1, inputs=inputs, label=label)
+            node = node_class(**config)
+            graph_node = GraphNode(node, len(self.schedule) + 1, inputs=inputs, label=labels(node) if labels is not None else None)
             graph_nodes.append(graph_node)
             self.schedule.append(graph_node)
         try:

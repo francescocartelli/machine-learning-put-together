@@ -28,24 +28,18 @@ src
 │   └── svm.py  
 │  
 ├── examples  
-|   ├── iris  
-|   |   ├── iris_data_util.py  
-|   |   ├── iris_gaussian_c_example.py  
-|   |   ├── iris_gaussian_c_example_graphs.py 
-|   |   ├── iris_gmm_example.py  
-|   |   ├── iris_gmm_example_graphs.py 
-|   |   ├── iris_graphs_example.py  
-|   |   ├── iris_logistic_reg_example.py 
-|   |   ├── iris_logistic_reg_example_graphs.py  
-|   |   ├── iris_preprocessing_example.py  
-|   |   ├── iris_svm_example.py  
-|   |   └── iris_svm_example_graphs.py  
-|   |  
-|   └── pulsar  
-|        ├── data  
-|        |   └── HTRU_2.csv  
-|        |  
-|        └── measuring_example.py  
+|   └── iris  
+|       ├── iris_data_util.py  
+|       ├── iris_gaussian_c_example.py  
+|       ├── iris_gaussian_c_example_graphs.py 
+|       ├── iris_gmm_example.py  
+|       ├── iris_gmm_example_graphs.py 
+|       ├── iris_graphs_example.py  
+|       ├── iris_logistic_reg_example.py 
+|       ├── iris_logistic_reg_example_graphs.py  
+|       ├── iris_preprocessing_example.py  
+|       ├── iris_svm_example.py  
+|       └── iris_svm_example_graphs.py   
 │  
 ├── graphs  
 |   ├── __init__.py  
@@ -108,15 +102,10 @@ Useful tools for plotting and printing results and comparing models by using mea
 Based on dataset.  
 ### Iris  
 Dataset at https://archive.ics.uci.edu/ml/datasets/iris.  
-- **Gaussian classifiers example**: Straightforward application of Gaussian classifiers and leave-one-out version applied to the classifiers.   
-- **Gaussian Mixture Model example**: Straightforward application of GMM classifier.   
-- **Logistic Regression example**: Straightforward application of logistic regression classifier.  
-- **Preprocessing**: Plotting of iris dataset after application of LDA and PCA.   
-- **Support Vector Machine example**: Straightforward application of SVM classifier.   
-### HTRU2  
-Dataset at https://archive.ics.uci.edu/ml/datasets/HTRU2.  
-- **Measuring**: Evalutating predictions score between different classifiers.  
-  
+- **Gaussian classifiers examples**: Standard and graphs based application of Gaussian classifiers.  
+- **Gaussian Mixture Model examples**: Standard and graphs based application of GMM classifiers.   
+- **Logistic Regression examples**: Standard and graphs based application of logistic regression classifiers (2 classes split).  
+- **Support Vector Machine examples**: Standard and graphs based application of SVM classifier (2 classes split).
   
 ## Author  
 - *Francesco Cartelli* (https://github.com/francescocartelli)
