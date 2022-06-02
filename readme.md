@@ -31,11 +31,15 @@ src
 |   ├── iris  
 |   |   ├── iris_data_util.py  
 |   |   ├── iris_gaussian_c_example.py  
+|   |   ├── iris_gaussian_c_example_graphs.py 
 |   |   ├── iris_gmm_example.py  
+|   |   ├── iris_gmm_example_graphs.py 
 |   |   ├── iris_graphs_example.py  
-|   |   ├── iris_logistic_reg_example.py  
+|   |   ├── iris_logistic_reg_example.py 
+|   |   ├── iris_logistic_reg_example_graphs.py  
 |   |   ├── iris_preprocessing_example.py  
-|   |   └── iris_svm_example.py  
+|   |   ├── iris_svm_example.py  
+|   |   └── iris_svm_example_graphs.py  
 |   |  
 |   └── pulsar  
 |        ├── data  
@@ -45,7 +49,8 @@ src
 │  
 ├── graphs  
 |   ├── __init__.py  
-│   └── graphs.py
+|   ├── graphs.py  
+│   └── grids.py
 │ 
 ├── measuring_predictions  
 |   ├── __init__.py  
@@ -69,8 +74,8 @@ src
 ## Graphs    
 Useful tools to automate training and evalutation on multiple classifiers, preprocessing techinques and results elaboration.<br>
 Graphs allow to display the internal structure of their nodes with *display* method.<br>
-See **./src/examples/iris/iris_graphs_examples.py** for an example, the image below represent the internal structure of 
-the graph directly from the example *display* invocation.
+See **./src/examples/iris/iris_[classifier]_examples_graphs.py** for examples, the image below represent the internal structure of 
+the graph directly from **iris_graphs_examples.py** *display* invocation.
 
 ![iris graph example](./graph_strucure.png)
 
@@ -83,7 +88,7 @@ the graph directly from the example *display* invocation.
 - **Support Vector Machine**  
 - **Gaussian Mixture Model**  
   
-### How to use them?  
+### Use
 Each classifier is represented by a class.<br>  
 The initialization of each classifier requires hyperparameters injection.  
 Training data is in the form of a numpy matrix NxM (each row is an attribute, each column is a training sample).  
@@ -93,10 +98,10 @@ Invoke the classifier *"transform"* method with the evaluation data set as param
 (in the the form of log-likelihood, log-likelihood-ratio or others) for the models.<br>  
 Use the returned evaluation score to compute the prediction.  
   
-## Measuring Predictions  
+## Measuring Predictions (mostly for binary classifiers)
 Measuring prediction of models and evaluating scores for different problems applications.  
   
-## Plotting  
+## Plotting (and Printing)
 Useful tools for plotting and printing results and comparing models by using measuring_predictions module.  
   
 ## Examples  

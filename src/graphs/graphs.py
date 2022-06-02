@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
+from graphs.grids import Grid
+
 
 class Printer:
     def __call__(self, *args, **kwargs):
@@ -85,6 +87,22 @@ class Graph:
             self.levels.append(1)
 
         return graph_node
+
+    def add_multiple(self, node_class, grid, **kwargs):
+        inputs = kwargs.pop("inputs")
+        label = kwargs.pop("label", None)
+
+        graph_nodes = []
+        for config in grid.configs:
+            graph_node = GraphNode(node_class(**config), len(self.schedule) + 1, inputs=inputs, label=label)
+            graph_nodes.append(graph_node)
+            self.schedule.append(graph_node)
+        try:
+            self.levels[graph_nodes[0].level] += len(graph_nodes)
+        except IndexError:
+            self.levels.append(len(graph_nodes))
+
+        return graph_nodes
 
     def fit(self, x, y):
         self.x.results = x

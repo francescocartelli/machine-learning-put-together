@@ -92,4 +92,4 @@ class RBF:
         return np.exp(-self.l * np.linalg.norm(x1 - x2)**2) + self.k
 
     def __str__(self):
-        return f"Poly (c:{self.l}, d:{self.k})"
+        return f"RBF (l:{self.l}, K:{self.k})"

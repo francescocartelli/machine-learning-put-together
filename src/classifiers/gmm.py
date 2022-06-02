@@ -132,4 +132,4 @@ class GMM(Classifier):
         return joint_p - logsumexp(joint_p, axis=0)
 
     def __str__(self):
-        return f"GMM(n: {self.n} alpha:{self.alpha} psi:{self.psi})"
+        return f"GMM(model: {self.model} n: {self.n} alpha:{self.alpha} psi:{self.psi})"
