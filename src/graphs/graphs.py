@@ -61,7 +61,7 @@ class InputNode:
         self.type = type
 
     def __str__(self):
-        return f"In{self.type}"
+        return f"{self.type}"
 
 
 class Graph:
@@ -122,7 +122,7 @@ class Graph:
             if isinstance(n.node, Classifier):
                 n.results = n.node.transform([g() for g in n.inputs][0])
             elif isinstance(n.node, Transformation):
-                n.results = n.node.transform(n.inputs[0]())
+                n.results = n.node.transform(*(i() for i in n.inputs))
 
     def output(self, y):
         for n in self.schedule:
@@ -155,7 +155,7 @@ class Graph:
                 color = '#BFC9CA' if isinstance(n.node, Classifier) and k == 1 else '#5F6A6A'
                 style = 'dashed' if isinstance(n.node, Classifier) and k == 1 else 'solid'
                 g.add_edge(j.node_id, n.node_id, color=color, style=style)
-            node_labels[n.node_id] = str(n)[:3]
+            node_labels[n.node_id] = str(n)
         options = {
             "width": 1,
             "labels": node_labels,

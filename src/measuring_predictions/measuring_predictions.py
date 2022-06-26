@@ -14,10 +14,15 @@ class ConfMatrix:
 
 # Given predicted labels and actual label return the confusion matrix
 def conf_matrix(pred_labels, act_labels):
+    pred_labels = pred_labels.astype(int)
+    act_labels = act_labels.astype(int)
+
     nc = np.unique(act_labels).size
     matrix = np.zeros([nc, nc], dtype=int)
-    for i in range(len(act_labels)):
-        matrix[int(pred_labels[i]), int(act_labels[i])] += 1
+
+    for i in range(nc):
+        for j in range(nc):
+            matrix[i, j] = np.sum((pred_labels == i) & (act_labels == j))
     return matrix
 
 

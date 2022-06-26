@@ -6,9 +6,10 @@ from graphs import *
 
 # Logistic Regression binary classifier
 class LogisticReg(Classifier):
-    def __init__(self, l=10**-3, prior=None):
+    def __init__(self, l=10**-3, recal=False, prior=None):
         self.l = l
         self.prior = prior
+        self.recal = recal
         self.w = None                       # Optimized weights vector, set in training
         self.b = None                       # Optimized biases vector, set in training
 
@@ -43,7 +44,12 @@ class LogisticReg(Classifier):
 
     # Given an evaluation set returns the log likelihood ratio
     def transform(self, x):
-        return np.dot(self.w.T, x) + self.b
+        if self.recal:
+            prior = self.prior if self.prior is not None else 0.5
+            b = self.b - (np.log(prior / (1 - prior)))
+            return np.dot(self.w.T, x) + b
+        else:
+            return np.dot(self.w.T, x) + self.b
 
     def __str__(self):
-        return f"LoR(l:{self.l}, prior:{self.prior})"
+        return f"LR(l:{self.l}, prior:{self.prior})"

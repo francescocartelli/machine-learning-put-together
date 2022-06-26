@@ -130,3 +130,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+.iws
+.idea
+workspace.xml
+tasks.xml
+
+!/src/examples/iris/results/
+!/src/examples/wines/results/
