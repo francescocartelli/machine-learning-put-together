@@ -1,10 +1,9 @@
 
 <div align="center">
+  <img src="./images/logo.png" width="200" height="200" style="margin-top: 4em; margin-bottom: -4em;"/>
   <h1>Machine Learning Put Together</h1>
-  <div align="center"><p><i>Python implementations of few standard ML algorithms for classification, models evaluation and preprocessing.</i></p></div>
-  <div align="center">
-    <a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg"></a>
-  </div>
+  <p><i>Python implementations of standard ML algorithms for classification, models evaluation and preprocessing.</i></p>
+   <a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg"></a>
 </div>
 
 ## Prerequirements   
@@ -71,7 +70,7 @@ Graphs allow to display the internal structure of their nodes with *display* met
 See **./src/examples/iris/iris_[classifier]_examples_graphs.py** for examples, the image below represent the internal structure of 
 the graph directly from **iris_graphs_examples.py** *display* invocation.
 
-![iris graph example](./graph_strucure.png)
+![iris graph example](./images/graph_strucure.png)
 
 ## Classifiers  
 - **Gaussian classifiers**:  
