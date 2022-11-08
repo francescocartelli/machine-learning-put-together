@@ -1,5 +1,5 @@
 import numpy as np
-from graphs.graphs import Transformation
+from src.graphs.graphs import Transformation
 
 
 class Stack(Transformation):

@@ -1,4 +1,4 @@
-from graphs.graphs import *
-from graphs.grids import *
+from src.graphs.graphs import *
+from src.graphs.grids import *
 
 __all__ = ["Graph", "Transformation", "Node", "Classifier", "Printer", "Grid"]

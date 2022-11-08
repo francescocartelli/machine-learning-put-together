@@ -1,8 +1,8 @@
 from examples.iris.iris_data_utils import load_iris_binary_split
 from src.classifiers.logistic_reg import LogisticReg
-from preprocessing import *
-from plotting import *
-from measuring_predictions import *
+from src.preprocessing import *
+from src.plotting import *
+from src.measuring_predictions import *
 
 # Examples of training and test
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="./images/logo.png" width="200" height="200" style="margin-top: 4em; margin-bottom: -4em;"/>
+  <img src="./images/logo.png" width="200" height="200" style="margin-top: 4em;"/>
   <h1>Machine Learning Put Together</h1>
   <p><i>Python implementations of standard ML algorithms for classification, models evaluation and preprocessing.</i></p>
    <a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg"></a>
@@ -12,56 +12,63 @@ The following packages are used in this project:
 - **Networkx**  
 - **Numpy**  
 - **Scipy**  
-- **Sklearn**  
+
+## Getting Started
+From the repo root directory:
+- Get the modules required by launching:
+```
+pip install -r ./requirements.txt 
+```
+- Launch one example:
+```
+python3 -m examples.iris.iris_gaussian_example
+```
   
 ## Folder Structure  
 ```  
-src  
 .  
-│  
-├── classifiers  
-|   ├── __init__.py  
-│   ├── gaussian_c.py  
-│   ├── gmm.py  
-│   ├── logistic_reg.py  
-│   └── svm.py  
-│  
-├── examples  
-|   └── iris  
-|       ├── iris_data_util.py  
-|       ├── iris_gaussian_c_example.py  
-|       ├── iris_gaussian_c_example_graphs.py 
-|       ├── iris_gmm_example.py  
-|       ├── iris_gmm_example_graphs.py 
-|       ├── iris_graphs_example.py  
-|       ├── iris_logistic_reg_example.py 
-|       ├── iris_logistic_reg_example_graphs.py  
-|       ├── iris_preprocessing_example.py  
-|       ├── iris_svm_example.py  
-|       └── iris_svm_example_graphs.py   
-│  
-├── graphs  
-|   ├── __init__.py  
-|   ├── graphs.py  
-│   └── grids.py
-│ 
-├── measuring_predictions  
-|   ├── __init__.py  
-│   └── measuring_predictions.py  
-│  
-├── plotting  
-|   ├── __init__.py  
-│   ├── printing.py  
-│   └── plotting.py  
-│  
-├── preprocessing  
-|   ├── __init__.py  
-│   ├── gaussianization.py  
-│   ├── lda.py  
-│   ├── pca.py  
-│   └── standard.py
-│  
-└── utils.py  
+├── examples                                             # All examples are here  
+|   ├── iris                                             # Iris dataset examples
+|   |   ├── ...
+|   |   └── data
+|   |
+│   └── wines                                            # Wines dataset examples
+|       ├── ...
+|       └── data
+|
+├── images                                               # Repo images
+|
+└── src # Source code directory
+    ├── classifiers                                      # Classifiers
+    |   ├── __init__.py  
+    │   ├── gaussian_c.py  
+    │   ├── gmm.py  
+    │   ├── logistic_reg.py  
+    │   └── svm.py  
+    │   
+    │  
+    ├── graphs                                           # Graphs
+    |   ├── __init__.py  
+    |   ├── graphs.py  
+    │   └── grids.py
+    │ 
+    ├── measuring_predictions                            # Prediction exaluation
+    |   ├── __init__.py  
+    │   └── measuring_predictions.py  
+    │  
+    ├── plotting                                         # Plotting
+    |   ├── __init__.py  
+    │   ├── printing.py  
+    │   └── plotting.py  
+    │  
+    ├── preprocessing                                    # Preprocessing
+    |   ├── __init__.py  
+    │   ├── gaussianization.py  
+    │   ├── lda.py  
+    │   ├── pca.py  
+    │   └── standard.py
+    │  
+    └── utils.py  
 ```  
 
 ## Graphs    

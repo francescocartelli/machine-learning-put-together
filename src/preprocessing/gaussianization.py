@@ -1,7 +1,7 @@
-from scipy.stats import norm
 import numpy as np
+from scipy.stats import norm
 
-from graphs import *
+from src.graphs import *
 
 
 def gaussianization(D):

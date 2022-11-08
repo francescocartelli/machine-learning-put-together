@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
-from graphs.grids import Grid
+from src.graphs.grids import Grid
 
 
 class Printer:

@@ -1,8 +1,8 @@
 import numpy as np
 from scipy.linalg import eigh
-from utils import colm
 
-from graphs import *
+from src.utils import colm
+from src.graphs import *
 
 
 def between_within_cov(D, L):

@@ -1,6 +1,6 @@
 import numpy as np
 
-from graphs import *
+from src.graphs import *
 
 
 class Standardization(Node):

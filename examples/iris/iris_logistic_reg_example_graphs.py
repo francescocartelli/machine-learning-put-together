@@ -1,7 +1,7 @@
 from examples.iris.iris_data_utils import load_iris_binary_split
-from graphs import *
-from classifiers import *
-from plotting import *
+from src.graphs import *
+from src.classifiers import *
+from src.plotting import *
 
 
 if __name__ == "__main__":

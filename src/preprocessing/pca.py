@@ -1,7 +1,7 @@
 import numpy as np
-from utils import mu_sigma
 
-from graphs import *
+from src.utils import mu_sigma
+from src.graphs import *
 
 
 def pca(A, n):

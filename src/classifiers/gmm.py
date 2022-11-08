@@ -1,8 +1,8 @@
 import numpy as np
 from scipy.special import logsumexp
-from utils import colm, mu_sigma, logpdf_gau_nd
 
-from graphs import *
+from src.utils import colm, mu_sigma, logpdf_gau_nd
+from src.graphs import *
 
 
 # Marginal log-densities

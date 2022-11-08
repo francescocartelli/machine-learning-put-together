@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
-from measuring_predictions import *
-from graphs import Printer
+from src.measuring_predictions import *
+from src.graphs import Printer
 
 
 def plot_multiple_bayes_error(S_list, labels, logPriors, legend=None):

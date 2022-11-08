@@ -1,8 +1,8 @@
 import numpy as np
 from scipy.optimize import fmin_l_bfgs_b
-from utils import colm, rowm
 
-from graphs import *
+from src.utils import colm, rowm
+from src.graphs import *
 
 
 # Support Vector Machine classifier
@@ -43,7 +43,7 @@ class SVM(Classifier):
         x0 = colm(np.zeros(x.shape[1])) if x0 is None else x0
 
         # Optimize alpha matrix
-        self.alpha, _, _ = fmin_l_bfgs_b(self.dual_loss, x0, bounds=bounds, approx_grad=False, iprint=0, factr=factr, maxfun=maxfun)
+        self.alpha, _, _ = fmin_l_bfgs_b(self.dual_loss, x0, bounds=bounds, approx_grad=False, iprint=-1, factr=factr, maxfun=maxfun)
 
         # Update weight matrix if the SVM has linear kernel
         if self.kernel is None:

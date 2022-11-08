@@ -1,11 +1,9 @@
-import numpy as np
-
-from graphs import *
-from classifiers import *
-from preprocessing import *
-from plotting import *
-from transformations import *
-from examples.wines.iris_data_utils import get_wine_data
+from src.graphs import *
+from src.classifiers import *
+from src.preprocessing import *
+from src.plotting import *
+from src.transformations import *
+from examples.wines.wines_data_utils import get_wine_data
 
 if __name__ == '__main__':
     DTR, LTR, DTE, LTE = get_wine_data(labels=True)
@@ -26,7 +24,7 @@ if __name__ == '__main__':
           printMinDCF=True, printActDCF=True, output_dir='./results/fusion',
           inputs=[rec])
 
-    #g.display()
+    g.display()
 
     g.fit(DTR, LTR)
     g.transform(DTE)

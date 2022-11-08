@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def get_wine_data(path_train="./data/train.txt", path_test="./data/test.txt", labels=False):
+def get_wine_data(path_train="./examples/wines/data/train.txt", path_test="./examples/wines/data/test.txt", labels=False):
     """
     Get all pulsar data and divide into labels
     """

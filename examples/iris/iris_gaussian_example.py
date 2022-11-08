@@ -1,11 +1,9 @@
 import numpy as np
+
 from examples.iris.iris_data_utils import load_iris, load_iris_split
 from src.classifiers.gaussian_c import Gaussian
-from utils import KFoldCrossVal
-
-from preprocessing import *
-
-from scipy.stats import norm
+from src.utils import KFoldCrossVal
+from src.preprocessing import *
 
 
 # Examples of training and test
@@ -23,7 +21,7 @@ if __name__ == "__main__":
         llr = g.transform(DTE)
         post_p = g.posterior_log_l(llr, priors)
 
-        print(g, f"accuracy: {(np.argmax(post_p, 0) != LTE).sum() / LTE.size * 100}%")
+        print(g, f"error rate: {(np.argmax(post_p, 0) != LTE).sum() / LTE.size * 100}%")
     print("==============================")
 
     # Leave one out split

@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.optimize import fmin_l_bfgs_b
 
-from graphs import *
+from src.graphs import *
 
 
 # Logistic Regression binary classifier
@@ -36,9 +36,9 @@ class LogisticReg(Classifier):
 
         # Regularization requires prior not None
         if self.prior is None:
-            x, value, _ = fmin_l_bfgs_b(self.j_loss, x0, args=(x, y), approx_grad=True, iprint=0)
+            x, value, _ = fmin_l_bfgs_b(self.j_loss, x0, args=(x, y), approx_grad=True, iprint=-1)
         else:
-            x, value, _ = fmin_l_bfgs_b(self.j_loss_reg, x0, args=(x, y), approx_grad=True, iprint=0)
+            x, value, _ = fmin_l_bfgs_b(self.j_loss_reg, x0, args=(x, y), approx_grad=True, iprint=-1)
 
         self.w, self.b = x[0:-1], x[-1]
 

@@ -2,8 +2,8 @@ import numpy as np
 import csv
 import os
 
-from graphs import *
-from measuring_predictions import *
+from src.graphs import *
+from src.measuring_predictions import *
 
 
 def accuracy(scores, labels, decimal=None):
