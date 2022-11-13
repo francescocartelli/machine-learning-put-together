@@ -38,7 +38,7 @@ python3 -m examples.iris.iris_gaussian_example
 |
 ├── images                                               # Repo images
 |
-└── src # Source code directory
+└── src                                                  # Source code directory
     ├── classifiers                                      # Classifiers
     |   ├── __init__.py  
     │   ├── gaussian_c.py  
