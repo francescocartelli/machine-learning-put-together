@@ -8,10 +8,12 @@
 
 ## Prerequirements   
 The following packages are used in this project:  
-- **Matplotlib**
-- **Networkx**  
-- **Numpy**  
-- **Scipy**  
+- **<a href="https://matplotlib.org/">Matplotlib</a>**
+- **<a href="https://networkx.org/">Networkx</a>**  
+- **<a href="https://numpy.org">Numpy**  
+- **<a href="https://scipy.org/">Scipy</a>**  
+
+<br>
 
 ## Getting Started
 From the repo root directory:
@@ -23,50 +25,31 @@ pip install -r ./requirements.txt
 ```
 python3 -m examples.iris.iris_gaussian_example
 ```
+
+<br>
   
 ## Folder Structure  
 ```  
 .  
-├── examples                                             # All examples are here  
-|   ├── iris                                             # Iris dataset examples
-|   |   ├── ...
+├── examples                                 # All examples are here  
+|   ├── iris                                 # Iris dataset examples
 |   |   └── data
 |   |
-│   └── wines                                            # Wines dataset examples
-|       ├── ...
+│   └── wines                                # Wines dataset examples
 |       └── data
 |
-├── images                                               # Repo images
+├── images                                   # Repo images
 |
-└── src # Source code directory
-    ├── classifiers                                      # Classifiers
-    |   ├── __init__.py  
-    │   ├── gaussian_c.py  
-    │   ├── gmm.py  
-    │   ├── logistic_reg.py  
-    │   └── svm.py  
+└── src                                      # Source code directory
+    ├── classifiers                          # Classifiers
     │   
-    │  
-    ├── graphs                                           # Graphs
-    |   ├── __init__.py  
-    |   ├── graphs.py  
-    │   └── grids.py
+    ├── graphs                               # Graphs
     │ 
-    ├── measuring_predictions                            # Prediction exaluation
-    |   ├── __init__.py  
-    │   └── measuring_predictions.py  
+    ├── measuring_predictions                # Prediction exaluation
     │  
-    ├── plotting                                         # Plotting
-    |   ├── __init__.py  
-    │   ├── printing.py  
-    │   └── plotting.py  
+    ├── plotting                             # Plotting
     │  
-    ├── preprocessing                                    # Preprocessing
-    |   ├── __init__.py  
-    │   ├── gaussianization.py  
-    │   ├── lda.py  
-    │   ├── pca.py  
-    │   └── standard.py
+    ├── preprocessing                        # Preprocessing
     │  
     └── utils.py  
 ```  
@@ -74,10 +57,13 @@ python3 -m examples.iris.iris_gaussian_example
 ## Graphs    
 Useful tools to automate training and evalutation on multiple classifiers, preprocessing techinques and results elaboration.<br>
 Graphs allow to display the internal structure of their nodes with *display* method.<br>
-See **./src/examples/iris/iris_[classifier]_examples_graphs.py** for examples, the image below represent the internal structure of 
-the graph directly from **iris_graphs_examples.py** *display* invocation.
+See the a complete iris example <a href="https://github.com/francescocartelli/machine-learning-put-together/blob/master/examples/iris/iris_graphs_example.py">here</a>.
 
-![iris graph example](./images/graph_strucure.png)
+<div align="center">
+<img src="./images/graph_strucure.png">
+</div>
+
+<br>
 
 ## Classifiers  
 - **Gaussian classifiers**:  
@@ -86,32 +72,36 @@ the graph directly from **iris_graphs_examples.py** *display* invocation.
    - **Tied Covariance Gaussian classifier**  
 - **Logistic Regression**  
 - **Support Vector Machine**  
+   - **Linear SVM**
+   - **Quadratic Kernel SVM**
+   - **Radial Basis Kernel SVM**
 - **Gaussian Mixture Model**  
+
+<br>
   
-### Use
-Each classifier is represented by a class.<br>  
-The initialization of each classifier requires hyperparameters injection.  
-Training data is in the form of a numpy matrix NxM (each row is an attribute, each column is a training sample).  
+### Usage
+Training data is in the form of a matrix NxM (each row is an attribute, each column is a training sample).
 Labels are in the form of a numpy vector.<br>  
-Invoke the classifier *"train"* method for training the model and setting the learning parameters.<br>  
+Invoke the classifier *"train"* method for training the model and setting the learning parameters. 
 Invoke the classifier *"transform"* method with the evaluation data set as parameter to compute the evaluation score   
 (in the the form of log-likelihood, log-likelihood-ratio or others) for the models.<br>  
-Use the returned evaluation score to compute the prediction.  
-  
-## Measuring Predictions (mostly for binary classifiers)
-Measuring prediction of models and evaluating scores for different problems applications.  
-  
-## Plotting (and Printing)
-Useful tools for plotting and printing results and comparing models by using measuring_predictions module.  
+Use the returned evaluation score to compute the prediction.
+
+<br>
   
 ## Examples  
-Based on dataset.  
-### Iris  
+Available <a href="https://github.com/francescocartelli/machine-learning-put-together/tree/master/examples">here</a>, divided by dataset:
+### <a href="https://github.com/francescocartelli/machine-learning-put-together/tree/master/examples/iris">Iris</a>  
 Dataset at https://archive.ics.uci.edu/ml/datasets/iris.  
-- **Gaussian classifiers examples**: Standard and graphs based application of Gaussian classifiers.  
-- **Gaussian Mixture Model examples**: Standard and graphs based application of GMM classifiers.   
-- **Logistic Regression examples**: Standard and graphs based application of logistic regression classifiers (2 classes split).  
-- **Support Vector Machine examples**: Standard and graphs based application of SVM classifier (2 classes split).
-  
+- **Gaussian classifiers examples**: Standard and graphs application of Gaussian classifiers.  
+- **Gaussian Mixture Model examples**: Standard and graphs application of GMM classifiers.   
+- **Logistic Regression examples**: Standard and graphs application of logistic regression classifiers (2 classes split).  
+- **Support Vector Machine examples**: Standard and graphs application of SVM classifier (2 classes split).
+
+### <a href="https://github.com/francescocartelli/machine-learning-put-together/tree/master/examples/wines">Wines</a>
+-  **Wines graph examples**: Model ensable for all the models (MVG, SVM Poly, SVM RBF and GMM) recalibrated by Logistic Regression with graph application.
+
+<br>
+
 ## Author  
-- *Francesco Cartelli* (https://github.com/francescocartelli)
+- **<a href="https://github.com/francescocartelli">Francesco Cartelli</a>**
